@@ -1,0 +1,22 @@
+export { CreateRepository } from './AdvancedCreateRepository.jsx';
+
+/* Implementación v1 conservada temporalmente como referencia de migración.
+import { useEffect, useMemo, useState } from 'react';
+import { api } from '../services/api.js';
+import { PageHeader } from '../components/Feedback.jsx';
+import { Modal } from '../components/Modal.jsx';
+import { Icon } from '../components/Icons.jsx';
+
+const legacyInitial = { name: '', description: '', visibility: 'private', autoInit: true, gitignoreTemplate: '' };
+function LegacyCreateRepository() {
+  const [form, setForm] = useState(legacyInitial); const [confirm, setConfirm] = useState(false); const [busy, setBusy] = useState(false); const [result, setResult] = useState(null); const [error, setError] = useState('');
+  const valid = /^[A-Za-z0-9._-]+$/.test(form.name) && form.name.length <= 100;
+  const submit = async () => { setBusy(true); setError(''); try { const data = await api.createRepository({ ...form, gitignoreTemplate: form.gitignoreTemplate || null, confirmed: true }); setResult(data.repository); setForm(legacyInitial); setConfirm(false); } catch (err) { setError(err.message); } finally { setBusy(false); } };
+  return <>
+    <PageHeader eyebrow="Operación POST" title="Crear repositorio" description="La API ejecutará la creación solamente después de revisar y confirmar el resumen."/>
+    <section className="panel form-panel"><form onSubmit={(e) => { e.preventDefault(); if (valid) setConfirm(true); }}><div className="form-grid"><label className="field"><span>Nombre del repositorio *</span><input value={form.name} maxLength={100} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="mi-proyecto" required/>{form.name && !valid && <small className="field-error">Use letras, números, punto, guion o guion bajo.</small>}</label><label className="field full"><span>Descripción</span><textarea value={form.description} maxLength={350} onChange={(e) => setForm({ ...form, description: e.target.value })} placeholder="¿Cuál es el propósito del repositorio?"/><small>{form.description.length}/350</small></label><fieldset className="field full"><legend>Visibilidad</legend><div className="choice-grid"><label className={`choice ${form.visibility === 'private' ? 'selected' : ''}`}><input type="radio" checked={form.visibility === 'private'} onChange={() => setForm({ ...form, visibility: 'private' })}/><strong>Privado</strong><span>Solo personas autorizadas.</span></label><label className={`choice ${form.visibility === 'public' ? 'selected' : ''}`}><input type="radio" checked={form.visibility === 'public'} onChange={() => setForm({ ...form, visibility: 'public' })}/><strong>Público</strong><span>Visible para cualquier persona.</span></label></div></fieldset><label className="field"><span>Plantilla .gitignore (opcional)</span><select value={form.gitignoreTemplate} onChange={(e) => setForm({ ...form, gitignoreTemplate: e.target.value })}><option value="">Sin plantilla</option><option value="Node">Node</option><option value="Python">Python</option><option value="Java">Java</option><option value="VisualStudio">Visual Studio</option></select></label><label className="toggle-row"><input type="checkbox" checked={form.autoInit} onChange={(e) => setForm({ ...form, autoInit: e.target.checked })}/><span><strong>Inicializar con README</strong><small>Crea el primer commit del repositorio.</small></span></label></div><div className="form-actions"><button className="button primary" disabled={!valid}><Icon name="plus"/>Revisar creación</button></div></form></section>
+    {result && <div className="notice success-notice"><Icon name="check"/><div><strong>Repositorio creado correctamente</strong><a href={result.htmlUrl} target="_blank" rel="noreferrer">{result.fullName} <Icon name="external" size={14}/></a></div></div>}
+    {confirm && <Modal title="Confirmar creación" onClose={() => !busy && setConfirm(false)} footer={<><button className="button secondary" onClick={() => setConfirm(false)} disabled={busy}>Cancelar</button><button className="button primary" onClick={submit} disabled={busy}>{busy ? 'Creando…' : 'Sí, crear repositorio'}</button></>}><dl className="summary"><div><dt>Nombre</dt><dd>{form.name}</dd></div><div><dt>Visibilidad</dt><dd>{form.visibility === 'private' ? 'Privado' : 'Público'}</dd></div><div><dt>README inicial</dt><dd>{form.autoInit ? 'Sí' : 'No'}</dd></div><div><dt>.gitignore</dt><dd>{form.gitignoreTemplate || 'Sin plantilla'}</dd></div></dl>{error && <p className="inline-error">{error}</p>}</Modal>}
+  </>;
+}
+*/
